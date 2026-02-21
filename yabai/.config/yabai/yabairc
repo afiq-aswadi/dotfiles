@@ -1,0 +1,77 @@
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+# default layout (can be bsp, stack or float)
+yabai -m config layout bsp
+
+#sketchybar implementation
+
+yabai -m config external_bar all:$(sketchybar --query bar | jq .height):0
+
+# trigger sketchybar updates on window events
+yabai -m signal --add event=window_focused action="sketchybar --trigger window_focused"
+yabai -m signal --add event=window_created action="sketchybar --trigger window_created"
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger window_destroyed"
+yabai -m signal --add event=space_changed action="sketchybar --trigger space_change"
+
+# auto-focus window under mouse when closing a window
+# yabai -m signal --add event=window_destroyed action="yabai -m window --focus mouse"
+
+#remove shadow
+
+yabai -m config window_shadow float
+
+# new window spawns to the right if vertical split, or bottom if horizontal split
+yabai -m config window_placement second_child
+
+# padding set to 12px
+yabai -m config top_padding 6
+yabai -m config bottom_padding 
+yabai -m config left_padding 0
+yabai -m config right_padding 0
+yabai -m config window_gap 5
+
+
+# # disable specific apps
+# yabai -m rule --add app="^System Settings$" manage=off
+# yabai -m rule --add app="^Calculator$" manage=off
+# yabai -m rule --add app="^Karabiner-Elements$" manage=off
+# yabai -m rule --add app="^QuickTime Player$" manage=off
+# yabai -m rule --add app="^Finder$" manage=off
+# yabai -m rule --add app="^Zoom$" manage=off
+# yabai -m rule --apply 
+yabai -m rule --add app="sioyek" role="AXWindow" subrole="AXDialog" manage=on
+
+# disable specific apps
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^QuickTime Player$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Zoom$" manage=off
+yabai -m rule --add app="^IINA" manage=off
+yabai -m rule --add app="^ExpressVPN" manage=off
+yabai -m rule --add app="^Trello" manage=off
+yabai -m rule --add app="^Toggl Track" manage=off
+yabai -m rule --apply
+# -- mouse settings --
+
+# center mouse on window with focus
+yabai -m config mouse_follows_focus on
+
+# modifier for clicking and dragging with mouse
+yabai -m config mouse_modifier alt
+# set modifier + left-click drag to move window
+yabai -m config mouse_action1 move
+# set modifier + right-click drag to resize window
+yabai -m config mouse_action2 resize
+
+# when window is dropped in center of another window, swap them (on edges it will split it)
+yabai -m mouse_drop_action swap
+
+# keep tiling stickied window
+yabai -m rule --add sticky=on manage=on
+
+#stack 
+yabai -m config --space 6 layout stack #discord and slack
+
+
