@@ -1,0 +1,6 @@
+{
+  "name": "next-prompt",
+  "version": "0.1.0",
+  "description": "After each turn, guess the next prompt and offer it as a one-click row above the prompt box",
+  "types": "./types/index.d.ts"
+}

@@ -1,0 +1,5 @@
+{
+  "name": "local-mods",
+  "owner": { "name": "afiq-aswadi" },
+  "plugins": [{ "name": "next-prompt", "source": "./" }]
+}

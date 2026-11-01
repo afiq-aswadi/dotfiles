@@ -63,3 +63,16 @@ yabai --restart-service
 skhd --restart-service
 sketchybar --reload
 ```
+
+## Claude Code mods
+
+`claude/` holds Claude Code mods, stowed into `~/.claude/local-mods/`. Each mod folder is its own local marketplace (`local-mods`). After `stow claude`:
+
+```bash
+claude plugin marketplace add ~/.claude/local-mods/next-prompt
+claude plugin install next-prompt@local-mods --scope user
+```
+
+Claude Code reads a folder marketplace from the folder itself, so after editing a mod, run `/reload-plugins` in a session.
+
+- `next-prompt`: after each reply, guesses your next message and shows it in an editable row above the prompt box. Enter or Send submits it; a photo sent from the main box with no text takes the row's text.
